@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
 import { UserState } from "./context/Context";
+import Finish from "./pages/Finish";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/test" element={<Test />} />
+            <Route exact path="/finish" element={<Finish />} />
           </Routes>
         </div>
       </UserState>

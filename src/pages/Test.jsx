@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../context/Context";
+import { Link } from "react-router-dom";
 
 export default function Test() {
   const context = useContext(UserContext);
@@ -30,9 +31,11 @@ export default function Test() {
           </button>
         </div>
         <div className="container my-3">
-          <button type="button" className="btn btn-success">
-            Submit Test
-          </button>
+          <Link to={"/finish"}>
+            <button type="button" className="btn btn-success">
+              Submit Test
+            </button>
+          </Link>
         </div>
       </div>
     </div>

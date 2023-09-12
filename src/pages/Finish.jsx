@@ -9,7 +9,12 @@ export default function Finish() {
       <Navbar />
       <p>Total Time:</p>
       <p>Name : {context.name} </p>
-      <p>QuestionIds with time on each Question</p>
+      {context.questions.map((question, index) => (
+        <p key={index}>
+          QuestionIds:{question} : Time {context.timeTaken[index] / 1000} s
+        </p>
+      ))}
+
       <p>Total time taken to complete the test</p>
     </div>
   );

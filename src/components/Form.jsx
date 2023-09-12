@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/Context";
 
@@ -13,9 +13,9 @@ export default function Form() {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    console.log(value);
+    // console.log(value);
     const checked = e.target.checked;
-    console.log(checked);
+    // console.log(checked);
     if (checked) {
       context.setQuestions([...context.questions, value]);
     } else {
@@ -39,6 +39,7 @@ export default function Form() {
         className="form-control"
         id="exampleFormControlInput1"
         onChange={handleName}
+        placeholder="Enter Your Name"
       />
 
       <div className="container">

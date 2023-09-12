@@ -26,9 +26,20 @@ export default function Test() {
   const [questionNo, setQuestionNo] = useState(0);
   const [question, setQuestion] = useState([]);
   const [isTestFinished, setIsTestFinished] = useState(false);
-  // const [timeTaken, setTimeTaken] = useState([]);
 
   const url = `https://0h8nti4f08.execute-api.ap-northeast-1.amazonaws.com/getQuestionDetails/getquestiondetails?QuestionID=${context.questions[questionNo]}`;
+
+  useEffect(() => {
+    if (!isTestFinished) {
+      const interval = setInterval(() => {
+        console.log(context.timeElapsed);
+        context.setTimeElapsed((prev) => prev + 1);
+      }, 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  });
 
   useEffect(() => {
     setStartTime(Date.now());
@@ -61,7 +72,7 @@ export default function Test() {
   return (
     <div>
       <Navbar />
-
+      <h3>{context.timeElapsed}</h3>
       {!isTestFinished && (
         <div className="container my-5 display-6">
           {question.map((q, i) => (

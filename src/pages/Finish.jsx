@@ -7,11 +7,13 @@ export default function Finish() {
   return (
     <div>
       <Navbar />
+      <p>Total Time taken: {context.timeElapsed}</p>
       <p>Total Time:</p>
       <p>Name : {context.name} </p>
       {context.questions.map((question, index) => (
         <p key={index}>
-          QuestionIds:{question} : Time {context.timeTaken[index] / 1000} s
+          QuestionIds:{question} : Time{" "}
+          {Math.floor(context.timeTaken[index] / 1000)} s
         </p>
       ))}
 

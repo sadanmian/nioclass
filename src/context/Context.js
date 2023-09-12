@@ -6,6 +6,7 @@ export const UserState = (props) => {
   const [name, setName] = useState("");
   const [questions, setQuestions] = useState([]);
   const [timeTaken, setTimeTaken] = useState([]);
+  const [timeElapsed, setTimeElapsed] = useState(1);
 
   return (
     <UserContext.Provider
@@ -16,6 +17,8 @@ export const UserState = (props) => {
         setQuestions,
         timeTaken,
         setTimeTaken,
+        timeElapsed,
+        setTimeElapsed,
       }}
     >
       {props.children}

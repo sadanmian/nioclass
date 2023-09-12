@@ -1,17 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../context/Context";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Test() {
   const context = useContext(UserContext);
   const [questionNo, setQuestionNo] = useState(0);
+  const [question, setQuestion] = useState([]);
+
+  const [posts, setPosts] = useState([]);
+
+  const url = `https://0h8nti4f08.execute-api.ap-northeast-1.amazonaws.com/getQuestionDetails/getquestiondetails?QuestionID=${context.questions[questionNo]}`;
+
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const res = await axios.get(url);
+        console.log(res);
+        setQuestion(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetch();
+  }, [url]);
 
   return (
     <div>
       <Navbar />
       <div className="container">
-        <h1 className="display-4">{context.questions[questionNo]}</h1>
+        <h1 className="display-4">
+          {question.map((q, i) => (
+            <p key={i}>{q.Question}</p>
+          ))}
+        </h1>
+        <h1 className="display-4">{}</h1>
         <div className="container my-2">
           <button
             disabled={questionNo === 0}

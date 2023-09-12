@@ -5,7 +5,6 @@ import { UserContext } from "../context/Context";
 export default function Form() {
   const context = useContext(UserContext);
   const navigate = useNavigate();
-  // const [questions, setQuestions] = useState([]);
 
   const handleName = (e) => {
     context.setName(e.target.value);
@@ -13,9 +12,7 @@ export default function Form() {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    // console.log(value);
     const checked = e.target.checked;
-    // console.log(checked);
     if (checked) {
       context.setQuestions([...context.questions, value]);
     } else {
@@ -32,7 +29,7 @@ export default function Form() {
   return (
     <div className="mb-3 my-5 container">
       <label htmlFor="exampleFormControlInput1" className="form-label">
-        <h2>Name : {context.name}</h2>
+        <h3>Name : {context.name}</h3>
       </label>
       <input
         type="text"
@@ -141,24 +138,29 @@ export default function Form() {
         </div>
       </div>
 
-      <div>
-        <Link
-          to={"/test"}
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <div className="d-grid gap-2">
-            <button
-              onClick={handleSubmit}
-              className="btn btn-primary btn-lg"
-              type="button"
-            >
-              Start Test
-            </button>
-          </div>
-        </Link>
-      </div>
+      {context.questions.length > 0 ? (
+        <div>
+          <Link
+            to={"/test"}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <div className="d-grid gap-2">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-primary btn-lg"
+                type="button"
+                disabled={context.questions.length === 0}
+              >
+                Start Test
+              </button>
+            </div>
+          </Link>
+        </div>
+      ) : (
+        <p className="fw-bolder">Select atleast one question to Start Test</p>
+      )}
     </div>
   );
 }
